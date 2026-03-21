@@ -10,5 +10,3 @@ namespace lab3 {
     public MatrixSizeException(string message) : base(message) { }
   }
 }
-
-// :)
