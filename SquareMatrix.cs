@@ -48,7 +48,7 @@ namespace lab3 {
     public static SquareMatrix operator +(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the addition
@@ -68,7 +68,7 @@ namespace lab3 {
     public static SquareMatrix operator *(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the multiplication
@@ -96,7 +96,7 @@ namespace lab3 {
     public static SquareMatrix operator <(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -116,7 +116,7 @@ namespace lab3 {
     public static SquareMatrix operator >(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -136,7 +136,7 @@ namespace lab3 {
     public static SquareMatrix operator >=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -156,7 +156,7 @@ namespace lab3 {
     public static SquareMatrix operator <=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Check
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -176,7 +176,7 @@ namespace lab3 {
     public static SquareMatrix operator ==(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -196,7 +196,7 @@ namespace lab3 {
     public static SquareMatrix operator !=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
       // Checking the sizes of the matrices
       if (firstMatrix.size != secondMatrix.size) {
-        throw new ArgumentException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("The sizes of the matrices must be equal");
       }
 
       // Result of the comparison
@@ -270,6 +270,26 @@ namespace lab3 {
       }
 
       return hash;
+    }
+
+    // Clone
+    public SquareMatrix Clone() {
+      // new object
+      SquareMatrix copy = new SquareMatrix(size);
+
+      // Copy every element
+      for (int indexOfRow = 0; indexOfRow < size; ++indexOfRow) {
+        for (int indexOfColumn = 0; indexOfColumn < size; ++indexOfColumn) {
+          copy.data[indexOfRow, indexOfColumn] = data[indexOfRow, indexOfColumn];
+        }
+      }
+
+      return copy;
+    }
+
+    // My custom exception ( for sizes )
+    public class MatrixSizeException : Exception {
+      public MatrixSizeException(string message) : base(message) { }
     }
   }
 }
