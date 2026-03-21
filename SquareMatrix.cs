@@ -41,5 +41,25 @@ namespace lab3 {
         }
       }
     }
+
+    // Overloading the addition operator for adding two matrices
+    public static SquareMatrix operator +(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
+      // Checking the sizes of the matrices
+      if (firstMatrix.size != secondMatrix.size) {
+        throw new ArgumentException("The sizes of the matrices must be equal");
+      }
+
+      // Result of the addition
+      SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
+
+      // Adding the matrices
+      for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
+        for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
+          resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] + secondMatrix.data[indexOfRow, indexOfColumn];
+        }
+      }
+
+      return resultMatrix;
+    }
   }
 }
