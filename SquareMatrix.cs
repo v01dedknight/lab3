@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace lab3 {
   // Class for generating a square matrixes
@@ -274,7 +269,7 @@ namespace lab3 {
 
     // Clone
     public SquareMatrix Clone() {
-      // new object
+      // New object
       SquareMatrix copy = new SquareMatrix(size);
 
       // Copy every element
