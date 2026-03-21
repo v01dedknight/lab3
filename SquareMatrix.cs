@@ -286,10 +286,5 @@ namespace lab3 {
 
       return copy;
     }
-
-    // My custom exception ( for sizes )
-    public class MatrixSizeException : Exception {
-      public MatrixSizeException(string message) : base(message) { }
-    }
   }
 }
