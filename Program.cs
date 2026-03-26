@@ -1,10 +1,9 @@
 ﻿using System;
-
 namespace lab3 {
   internal class Program {
     static void Main(string[] args) {
       try {
-        // Init two matrices with size 3x3
+        // Инициализация двух матриц размером 3x3
         SquareMatrix A = new SquareMatrix(3, 0, 5);
         SquareMatrix B = new SquareMatrix(3, 0, 5);
 
@@ -12,26 +11,26 @@ namespace lab3 {
 
         Console.WriteLine($"Matrix B:\n{B}");
 
-        // Addition
+        // Сложение
         SquareMatrix sum = A + B;
         Console.WriteLine($"A + B:\n{sum}");
 
-        // Multiplication
+        // Умножение
         SquareMatrix product = A * B;
         Console.WriteLine($"A * B:\n{product}");
 
-        // Equality check
+        // Проверка на равенство
         Console.WriteLine("A == B?");
         Console.WriteLine(A == B);
 
-        // Cloning
+        // Клонирование
         SquareMatrix cloneA = A.Clone();
         Console.WriteLine($"Clone A:\n{cloneA}");
 
-        // Exception check
+        // Проверка исключения
         SquareMatrix C = new SquareMatrix(2);
         Console.WriteLine("try A + C: ");
-        // Trigger
+        // Вызов исключения
         SquareMatrix fail = A + C;
       } catch (MatrixSizeException sizeException) {
         Console.WriteLine("Exception cought: " + sizeException.Message);

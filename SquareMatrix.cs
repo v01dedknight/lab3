@@ -2,21 +2,21 @@
 using System.Text;
 
 namespace lab3 {
-  // Class for generating a square matrixes
+  // Класс для генерации квадратных матриц
   public class SquareMatrix {
-    // Declaring a two-dimensional array for storing the matrix data and a variable for storing the size of the matrix
+    // Объявление двумерного массива для хранения данных матрицы и переменной для хранения размера матрицы
     private int[,] data;
     private int size;
     private static Random randomObjectForFilling = new Random();
 
-    // Constructor for filling the matrix with random numbers in the range from 0 to 9
+    // Конструктор для заполнения матрицы случайными числами в диапазоне от 0 до 9
     public SquareMatrix(int sizeOfMatrix) {
       this.size = sizeOfMatrix;
 
-      // Random data
+      // Случайные данные
       data = new int[sizeOfMatrix, sizeOfMatrix];
 
-      // Filling
+      // Заполнение
       for (int indexOfRow = 0; indexOfRow < sizeOfMatrix; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < sizeOfMatrix; ++indexOfColumn) {
           data[indexOfRow, indexOfColumn] = randomObjectForFilling.Next(0, 10);
@@ -24,14 +24,14 @@ namespace lab3 {
       }
     }
 
-    // Constructor with parameters for filling the matrix with random numbers in a specified range
+    // Конструктор с параметрами для заполнения матрицы случайными числами в заданном диапазоне
     public SquareMatrix(int sizeOfMatrix, int min, int max) {
       this.size = sizeOfMatrix;
 
-      // Random data
+      // Случайные данные
       data = new int[sizeOfMatrix, sizeOfMatrix];
 
-      // Filling
+      // Заполнение
       for (int indexOfRow = 0; indexOfRow < sizeOfMatrix; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < sizeOfMatrix; ++indexOfColumn) {
           data[indexOfRow, indexOfColumn] = randomObjectForFilling.Next(min, max);
@@ -39,17 +39,17 @@ namespace lab3 {
       }
     }
 
-    // Overloading the addition operator for adding two matrices
+    // Перегрузка оператора сложения для сложения двух матриц
     public static SquareMatrix operator +(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the addition
+      // Результат сложения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Adding the matrices
+      // Сложение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] + secondMatrix.data[indexOfRow, indexOfColumn];
@@ -59,27 +59,27 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // Overloading the multiplication operator for multiplying two matrices
+    // Перегрузка оператора умножения для умножения двух матриц
     public static SquareMatrix operator *(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the multiplication
+      // Результат умножения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Multiplying the matrices
+      // Умножение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
 
-        // Iterating through the columns of the second matrix
+        // Итерация по столбцам второй матрицы
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           int sumOfTheProducts = 0;
           for (int indexOfElement = 0; indexOfElement < firstMatrix.size; ++indexOfElement) {
             sumOfTheProducts += firstMatrix.data[indexOfRow, indexOfElement] * secondMatrix.data[indexOfElement, indexOfColumn];
           }
 
-          // Storing the result
+          // Сохранение результата
           resultMatrix.data[indexOfRow, indexOfColumn] = sumOfTheProducts;
         }
       }
@@ -87,17 +87,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // Overload for operator <
+    // Перегрузка оператора <
     public static SquareMatrix operator <(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] < secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -107,17 +107,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // Overload for operator >
+    // Перегрузка оператора >
     public static SquareMatrix operator >(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] > secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -127,17 +127,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // >=
+    // Оператор >=
     public static SquareMatrix operator >=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] >= secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -147,17 +147,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // <=
+    // Оператор <=
     public static SquareMatrix operator <=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Check
+      // Проверка
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] <= secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -167,17 +167,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // ==
+    // Оператор ==
     public static SquareMatrix operator ==(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] == secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -187,17 +187,17 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // !=
+    // Оператор !=
     public static SquareMatrix operator !=(SquareMatrix firstMatrix, SquareMatrix secondMatrix) {
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (firstMatrix.size != secondMatrix.size) {
-        throw new MatrixSizeException("The sizes of the matrices must be equal");
+        throw new MatrixSizeException("Размеры матриц должны быть равны");
       }
 
-      // Result of the comparison
+      // Результат сравнения
       SquareMatrix resultMatrix = new SquareMatrix(firstMatrix.size);
 
-      // Comparing the matrices
+      // Сравнение матриц
       for (int indexOfRow = 0; indexOfRow < firstMatrix.size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < firstMatrix.size; ++indexOfColumn) {
           resultMatrix.data[indexOfRow, indexOfColumn] = firstMatrix.data[indexOfRow, indexOfColumn] != secondMatrix.data[indexOfRow, indexOfColumn] ? 1 : 0;
@@ -207,12 +207,12 @@ namespace lab3 {
       return resultMatrix;
     }
 
-    // Overriding the ToString method for displaying the matrix
+    // Переопределение метода ToString для отображения матрицы
     public override string ToString() {
-      // Using StringBuilder for efficient string concatenation
+      // Использование StringBuilder для эффективной конкатенации строк
       StringBuilder stringBuilder = new StringBuilder();
 
-      // Iterating through the matrix and appending its elements to the StringBuilder
+      // Обход матрицы и добавление её элементов в StringBuilder
       for (int indexOfRow = 0; indexOfRow < size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < size; ++indexOfColumn) {
           stringBuilder.Append(data[indexOfRow, indexOfColumn] + " ");
@@ -221,28 +221,28 @@ namespace lab3 {
         stringBuilder.Append(Environment.NewLine);
       }
 
-      // Returning the string representation of the matrix
+      // Возврат строкового представления матрицы
       return stringBuilder.ToString();
     }
 
     public override bool Equals(object obj) {
-      // Checking if the object is null or if it is of a different type
+      // Проверка, является ли объект null или имеет другой тип
       if (obj == null || GetType() != obj.GetType()) {
         return false;
       }
 
-      // Casting the object to SquareMatrix
+      // Приведение объекта к типу SquareMatrix
       SquareMatrix otherMatrix = (SquareMatrix)obj;
 
-      // Checking the sizes of the matrices
+      // Проверка размеров матриц
       if (size != otherMatrix.size) {
         return false;
       }
 
-      // Comparing the matrices element by element
+      // Поэлементное сравнение матриц
       for (int indexOfRow = 0; indexOfRow < size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < size; ++indexOfColumn) {
-          // If any element is different, the matrices are not equal
+          // Если какой-либо элемент отличается, матрицы не равны
           if (data[indexOfRow, indexOfColumn] != otherMatrix.data[indexOfRow, indexOfColumn]) {
             return false;
           }
@@ -252,12 +252,12 @@ namespace lab3 {
       return true;
     }
 
-    // Overriding the GetHashCode method for generating a hash code for the matrix
+    // Переопределение метода GetHashCode для генерации хэш-кода матрицы
     public override int GetHashCode() {
-      // Starting with a non-zero prime number
+      // Начало с ненулевого простого числа
       int hash = 17;
 
-      // Combining the hash codes of the size and the elements of the matrix
+      // Комбинирование хэш-кодов размера и элементов матрицы
       for (int indexOfRow = 0; indexOfRow < size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < size; ++indexOfColumn) {
           hash = hash * 31 + data[indexOfRow, indexOfColumn].GetHashCode();
@@ -267,12 +267,12 @@ namespace lab3 {
       return hash;
     }
 
-    // Clone
+    // Клонирование
     public SquareMatrix Clone() {
-      // New object
+      // Новый объект
       SquareMatrix copy = new SquareMatrix(size);
 
-      // Copy every element
+      // Копирование каждого элемента
       for (int indexOfRow = 0; indexOfRow < size; ++indexOfRow) {
         for (int indexOfColumn = 0; indexOfColumn < size; ++indexOfColumn) {
           copy.data[indexOfRow, indexOfColumn] = data[indexOfRow, indexOfColumn];

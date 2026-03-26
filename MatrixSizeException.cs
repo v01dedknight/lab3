@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace lab3 {
-  // My custom exception for sizes
+  // Исключение для размеров матриц
   internal class MatrixSizeException : Exception {
     public MatrixSizeException(string message) : base(message) { }
   }
