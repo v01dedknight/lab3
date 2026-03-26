@@ -225,6 +225,7 @@ namespace lab3 {
       return stringBuilder.ToString();
     }
 
+    // Переопределение метода Equals для сравнения матриц
     public override bool Equals(object obj) {
       // Проверка, является ли объект null или имеет другой тип
       if (obj == null || GetType() != obj.GetType()) {
